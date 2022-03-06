@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import logo from './logo.svg';
 import './App.css';
 import { knapSackRecursive, unboundedKnapsack, knapSack } from './algorithms/knapsack'
+import { iconsMock } from './items/mock'
 
 const mock = [
     {
@@ -183,30 +183,37 @@ const mock = [
 
 function App() {
 
-useEffect(() => {
-    console.log('knap', knapSack(mock, 50))
-    console.log('unbounded', unboundedKnapsack(mock, mock.length - 1, 50))
-    console.log('knap recursive', knapSackRecursive(50, mock, mock.length))
-},[])
+    useEffect(() => {
+        console.log('knap', knapSack(mock, 50))
+        console.log('unbounded', unboundedKnapsack(mock, mock.length - 1, 50))
+        console.log('knap recursive', knapSackRecursive(20, iconsMock, iconsMock.length))
+    }, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            
+            <div className="mainArea">
+                <div className='leftArea'>
+                    <div className='merchant'>
+                    <p style={{fontSize: '15px', textAlign:'left'}}>Olá! Seja bem vindo ao nosso trabalho de projetos de algoritmos!<br/><br/>
+                    Hoje você será um mercador que stá acampado próximo a uma vila. Você possui mercadorias e deve transportar até vila o que te dará mais lucro, mas respeitando o peso máximo que você consegue carregar. <br/><br/>
+                    Clique nos items ao lado para ir adicionando à sua carroça e, quando achar que é o suficiente, faça a viagem.
+                    Ao final, nós te diremos quais items vão te dar o maior lucro, será se é um bom mercador?</p>
+                        <img className='merchantImg' src='merchant.png' alt="Merchant" />
+                    </div>
+                </div>
+                <div className='rightArea'>
+                    <div>
+                        {
+                            iconsMock.map((el) => <img key={el.name} src={el.icon} height={48} width={48} />)
+                        }
+                    </div>
+                    <div></div>
+                </div>
+
+            </div>
+        </div>
+    );
 }
 
 export default App;
