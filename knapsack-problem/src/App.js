@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css';
 import { knapSackRecursive, unboundedKnapsack, knapSack } from './algorithms/knapsack'
 import { iconsMock } from './items/mock'
-
+import Item from './components/Item'
+import ItemArea from './components/ItemArea';
 const mock = [
     {
         "name": "Mitchell Ernser",
@@ -183,32 +184,74 @@ const mock = [
 
 function App() {
 
+    const [items, setItems] = useState([])
+    const [selectedItems, setSelectedItemds] = useState([])
+    const [bagWeight, setBagWeight] = useState(20)
+    const [solution, setSolution] = useState(null)
+    const [showSolution, setShowSolution] = useState(false)
+
+
     useEffect(() => {
-        console.log('knap', knapSack(mock, 50))
-        console.log('unbounded', unboundedKnapsack(mock, mock.length - 1, 50))
-        console.log('knap recursive', knapSackRecursive(20, iconsMock, iconsMock.length))
+        // console.log('knap', knapSack(mock, 50))
+        // console.log('unbounded', unboundedKnapsack(mock, mock.length - 1, 50))
+        // console.log('knap recursive', knapSackRecursive(80, iconsMock, iconsMock.length))
+        randomizeItems()
     }, [])
+
+    useEffect(() => {
+        console.log(items)
+        if (items.length === 0) return
+        const solutionList = knapSackRecursive(bagWeight, items, items.length)
+        console.log('solution', solutionList)
+        setSolution(solutionList)
+    }, [items])
+
+
+    const randomizeItems = () => {
+        const size = Math.floor(Math.random() * 20) + 5
+        const weight = Math.floor(Math.random() * 120) + 20
+        const numbers = new Set([])
+        const selected = []
+
+        while (numbers.size < size) {
+            console.log('ue')
+            numbers.add(Math.floor(Math.random() * 36))
+        }
+        numbers.forEach((el) => selected.push(iconsMock[el]))
+
+        setBagWeight(weight)
+        setItems(selected)
+    }
 
     return (
         <div className="App">
-            
+
             <div className="mainArea">
                 <div className='leftArea'>
                     <div className='merchant'>
-                    <p style={{fontSize: '15px', textAlign:'left'}}>Olá! Seja bem vindo ao nosso trabalho de projetos de algoritmos!<br/><br/>
-                    Hoje você será um mercador que stá acampado próximo a uma vila. Você possui mercadorias e deve transportar até vila o que te dará mais lucro, mas respeitando o peso máximo que você consegue carregar. <br/><br/>
-                    Clique nos items ao lado para ir adicionando à sua carroça e, quando achar que é o suficiente, faça a viagem.
-                    Ao final, nós te diremos quais items vão te dar o maior lucro, será se é um bom mercador?</p>
                         <img className='merchantImg' src='merchant.png' alt="Merchant" />
+                        <p style={{ fontSize: '15px', color: 'white' }}>Olá! Seja bem vindo ao nosso trabalho de projetos de algoritmos!<br /><br />
+                            Hoje você será um mercador que stá acampado próximo a uma vila. Você possui mercadorias e deve transportar até vila o que te dará mais lucro, mas respeitando o peso máximo que você consegue carregar. <br /><br />
+                            Clique nos items ao lado para ir adicionando à sua carroça e, quando achar que é o suficiente, faça a viagem.
+                            Ao final, nós te diremos quais items vão te dar o maior lucro, será se é um bom mercador?</p>
                     </div>
                 </div>
                 <div className='rightArea'>
-                    <div>
+                    <ItemArea>
                         {
-                            iconsMock.map((el) => <img key={el.name} src={el.icon} height={48} width={48} />)
+                            items.length > 0 ?
+                                items.map((el) => (
+                                    <Item item={el} key={el.name}/>
+                                ))
+                                :
+                                <p>Sem items por hoje</p>
                         }
-                    </div>
-                    <div></div>
+                    </ItemArea>
+                    {(solution && showSolution) &&
+                    <ItemArea>
+                        {solution[1].map(el => <Item item={el} key={el.name}/>)}
+                    </ItemArea>
+                    }
                 </div>
 
             </div>
