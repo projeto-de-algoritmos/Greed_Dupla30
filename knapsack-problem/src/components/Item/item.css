@@ -11,3 +11,7 @@
     border-radius: 5px;
     border: solid 2px #2b1f22;
 }
+
+.itemClass:hover {
+    cursor: pointer;
+}

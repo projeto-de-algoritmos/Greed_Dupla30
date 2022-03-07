@@ -165,7 +165,7 @@ export const iconsMock = [
         name: 'Livro de magia necromante',
         value: 15,
         weight: 3,
-        icon: '/icons/spellbook_2.png'
+        icon: '/icons/spellbook_3.png'
     },
     {
         name: 'Biscoito',
