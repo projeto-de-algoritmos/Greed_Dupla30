@@ -59,7 +59,7 @@ function App() {
 
     const randomizeItems = () => {
         const size = Math.floor(Math.random() * 20) + 5
-        const weight = Math.floor(Math.random() * 60) + 20
+        const weight = Math.floor(Math.random() * 120) + 20
         setBagWeight(weight)
         const numbers = new Set([])
         const selected = []
