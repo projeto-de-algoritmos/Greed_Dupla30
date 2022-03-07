@@ -59,7 +59,8 @@ function App() {
 
     const randomizeItems = () => {
         const size = Math.floor(Math.random() * 20) + 5
-        const weight = Math.floor(Math.random() * 120) + 20
+        const weight = Math.floor(Math.random() * 60) + 20
+        setBagWeight(weight)
         const numbers = new Set([])
         const selected = []
 
@@ -67,10 +68,8 @@ function App() {
             numbers.add(Math.floor(Math.random() * 36))
         }
         numbers.forEach((el) => selected.push(iconsMock[el]))
-
-        const solutionList = knapSackRecursive(bagWeight, selected, selected.length)
+        const solutionList = knapSackRecursive(weight, selected, selected.length)
         setSolution(solutionList)
-        setBagWeight(weight)
         setItems(selected)
     }
 
@@ -81,16 +80,16 @@ function App() {
                 <div className='leftArea'>
                     <div className='merchant'>
                         <img className='merchantImg' src='merchant.png' alt="Merchant" />
-                        <p style={{ fontSize: '15px', color: 'white' }}>Olá! Seja bem vindo ao nosso trabalho de projetos de algoritmos!<br /><br />
-                            Hoje você será um mercador que stá acampado próximo a uma vila. Você possui mercadorias e deve transportar até vila o que te dará mais lucro, mas respeitando o peso máximo que você consegue carregar. <br /><br />
+                        <p style={{ fontSize: '15px', color: 'white' }}>Olá! Seja bem-vindo ao nosso trabalho de projetos de algoritmos!<br /><br />
+                            Hoje você será um mercador que está acampado próximo a uma vila. Você possui mercadorias e deve transportar até a vila o que te dará mais lucro, mas respeitando o peso máximo que você consegue carregar. <br /><br />
                             Clique nas mercadorias ao lado para ir adicionando à sua carroça e, quando achar que é o suficiente, faça a viagem.<br/>
-                            Abaixo te cada item você tem o seu peso (P) e o valor (V) e, ao passar o mouse sobre eles, haverá mais informações.<br/>
-                            Ao final, nós te diremos quais items vão te dar o maior lucro, será se é um bom mercador?</p>
+                            Abaixo de cada item você tem o seu peso (P) e o valor (V) e, ao passar o mouse sobre eles, haverá mais informações.<br/>
+                            Ao final, nós te diremos quais items vão te dar o maior lucro. Será que você é um bom mercador?</p>
                     </div>
                 </div>
                 <div className='rightArea'>
                     {
-                        !showSolution &&
+                        
                         <ItemArea>
                             <div style={{ textAlign: 'center', width: '100%' }}>
                                 <p>Essas são as mercadorias de hoje.</p>
@@ -108,7 +107,7 @@ function App() {
                     }
                     <ItemArea>
                         <div style={{ textAlign: 'center', width: '100%' }}>
-                            <p>Esses são as mercadorias selecionadas</p>
+                            <p>Essas são as mercadorias selecionadas</p>
                         </div>
                         {
                             selectedItems.length > 0 ?
@@ -139,7 +138,9 @@ function App() {
                         </ItemArea>
                     }
                     <div style={{ display: 'flex'}}>
-                        <button className='buttonClass' type='button' onClick={finishAttempt}>Finalizar</button>
+                        {!showSolution && 
+                            <button className='buttonClass' type='button' onClick={finishAttempt}>Finalizar</button>
+                        }
                         <button className='buttonClass' type='button' onClick={resetAttempt}>Reiniciar</button>
                     </div>
                 </div>
