@@ -1,4 +1,4 @@
-# NomedoProjeto
+# Village Merchant
 
 **Número da Lista**: 3<br>
 **Conteúdo da Disciplina**: Greed<br>
@@ -10,9 +10,9 @@
 | 16/0016169  |  Nícalo Ribeiro Dourado Araújo |
 
 ## Sobre 
-O nosso projeto utiliza o algoritmo do knapsack para, a partir de uma lista de itens contendo um peso e um valor, determinar quais elementos vão possuir o maior valor cabendo em um peso pré-determinado.  
-A partir disso, nós criamos um jogo em que simulamos ser um mercador. A cada rodada haverá uma lista de mercadorias e um peso máximo que seria a carroça do mercador. Cada item possui um valor e um peso. O objetivo é preencher a carroça com os itens que dariam o maior lucro, respeitando o peso máximo que pode ser carregado.  
-A cada rodada, os itens e o peso máximo mudam e o programa determina qual seria a melhor opção a partir dos itens e peso da vez. Após selecionar os itens, basta clicar em finalizar e a solução será mostrada.
+O nosso projeto utiliza o algoritmo do knapsack para, a partir de uma lista de itens com seu respectivo peso e valor, determinar quais elementos vão possuir o maior valor com um peso limite.  
+Com isso, nós criamos um jogo em que simulamos ser um mercador. A cada rodada, haverá uma lista de mercadorias e um peso máximo a ser carregado pelo mercador. Cada item possui um valor e um peso. O objetivo é preencher a carroça com os itens que dão o maior lucro, respeitando o peso máximo que pode ser carregado.  
+A cada rodada, os itens e o peso máximo mudam e o programa determina qual seria a melhor opção a partir dos itens e peso máximo da vez. Após selecionar os itens, basta clicar em finalizar e a solução será mostrada.
 
 ## Vídeo de apresentação  
 [Vídeo de apresentacao](screenshots/Greed-Dupla30.mp4)  
